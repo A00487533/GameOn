@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOn.Server", "GameOn.Server\GameOn.Server.csproj", "{7C9490EF-3EB9-4EA1-969F-1A4FCA9E9FB8}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "gameon.client", "gameon.client\gameon.client.esproj", "{8B1690BA-3119-4B53-BBB6-0743493B14E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C9490EF-3EB9-4EA1-969F-1A4FCA9E9FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9490EF-3EB9-4EA1-969F-1A4FCA9E9FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9490EF-3EB9-4EA1-969F-1A4FCA9E9FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9490EF-3EB9-4EA1-969F-1A4FCA9E9FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B1690BA-3119-4B53-BBB6-0743493B14E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1690BA-3119-4B53-BBB6-0743493B14E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1690BA-3119-4B53-BBB6-0743493B14E0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8B1690BA-3119-4B53-BBB6-0743493B14E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1690BA-3119-4B53-BBB6-0743493B14E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B1690BA-3119-4B53-BBB6-0743493B14E0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91FCB294-32E2-4883-816C-23EFE2075D11}
+	EndGlobalSection
+EndGlobal
