@@ -38,7 +38,7 @@ const PostgamePage = () => {
 
     return (
         <div className="page-container">
-            <h1>Your Postings</h1>
+            <h1>Create A New Post</h1>
             <button className="new-post-button" onClick={handleNewPost}>
                 New Post
             </button>
@@ -50,6 +50,7 @@ const PostgamePage = () => {
                     initialData={editPost}
                 />
             )}
+            <h1>Your Postings</h1>
 
             <div className="tiles-container">
                 {posts.map((post) => (

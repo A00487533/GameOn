@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import PaymentPage from "./pages/PaymentPage";
 import Navbar from "./components/Navbar";
+import Home from "./components/Home"
 
 
 function App() {
