@@ -1,10 +1,21 @@
-// This file allows you to configure ESLint according to your project's needs, so that you
-// can control the strictness of the linter, the plugins to use, and more.
+// RegisterPage.js
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-// For more information about configuring ESLint, visit https://eslint.org/docs/user-guide/configuring/
+const RegisterPage = () => {
+    const navigate = useNavigate();
 
-module.exports = [
-    {
-        rules: {}
-    }
-];
+    const handleRegister = () => {
+        // Simulate registration success
+        navigate("/payment");
+    };
+
+    return (
+        <div>
+            <h1>Register</h1>
+            <button onClick={handleRegister}>Register</button>
+        </div>
+    );
+};
+
+export default RegisterPage;

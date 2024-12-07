@@ -1,10 +1,22 @@
-// This file allows you to configure ESLint according to your project's needs, so that you
-// can control the strictness of the linter, the plugins to use, and more.
+// PaymentPage.js
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-// For more information about configuring ESLint, visit https://eslint.org/docs/user-guide/configuring/
+const PaymentPage = ({ onPaymentSuccess }) => {
+    const navigate = useNavigate();
 
-module.exports = [
-    {
-        rules: {}
-    }
-];
+    const handlePayment = () => {
+        // Simulate payment success
+        onPaymentSuccess();
+        navigate("/home");
+    };
+
+    return (
+        <div>
+            <h1>Payment</h1>
+            <button onClick={handlePayment}>Pay Now</button>
+        </div>
+    );
+};
+
+export default PaymentPage;

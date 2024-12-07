@@ -1,22 +1,27 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login"; // Import the Login component
-import Register from "./components/Register"; // Import the Register component
-//import Home from "./components/Home"; // Example Home component, if applicable
-import Payment from "./components/Payment";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import PostgamePage from "./pages/PostgamePage";
+import FindGamePage from "./pages/FindGamePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import PaymentPage from "./pages/PaymentPage";
+import Navbar from "./components/Navbar";
 
 const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} /> {/* Login page route */}
-        <Route path="/register" element={<Register />} />{" "} 
-        <Route path="/payment" element={<Payment />} />; 
-        {/* Register page route */}
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/postgame" element={<PostgamePage />} />
+                <Route path="/findgame" element={<FindGamePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/payment" element={<PaymentPage />} />
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;

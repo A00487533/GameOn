@@ -1,10 +1,12 @@
-// This file allows you to configure ESLint according to your project's needs, so that you
-// can control the strictness of the linter, the plugins to use, and more.
+import React from "react";
 
-// For more information about configuring ESLint, visit https://eslint.org/docs/user-guide/configuring/
+const HomePage = () => {
+    return (
+        <div style={{ padding: "20px" }}>
+            <h1>Login Page</h1>
+            <p>Please enter your credentials to log in.</p>
+        </div>
+    );
+};
 
-module.exports = [
-    {
-        rules: {}
-    }
-];
+export default HomePage;
