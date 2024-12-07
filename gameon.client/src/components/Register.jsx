@@ -1,6 +1,6 @@
 // src/components/Register.js
 import React, { useState } from "react";
-import "../styles/Register.css"; // Import the CSS file for styles
+import "./Register.css"; // Import the CSS file for styles
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -32,6 +32,16 @@ const Register = () => {
         <div className="register-container">
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                    required
+                />
+
                 <label htmlFor="email">Email:</label>
                 <input
                     type="email"

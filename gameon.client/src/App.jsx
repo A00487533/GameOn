@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import PaymentPage from "./pages/PaymentPage";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home"
+import SubscriptionPage from "./pages/SubscriptionPage";
 
 
 function App() {
@@ -37,6 +37,7 @@ function AppWithNavbar() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/subscription" element={<SubscriptionPage />} />
             </Routes>
         </div>
     );
