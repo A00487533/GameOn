@@ -2,10 +2,11 @@ namespace GameOn.Server.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
-        public string Title { get; set; }
+        public int EventID { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
-        public string Location { get; set; }
+        public int UserID { get; set; }
+
+        // Navigation property
+        public virtual User User { get; set; }
     }
 }

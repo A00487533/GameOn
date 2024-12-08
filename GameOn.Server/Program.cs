@@ -1,16 +1,14 @@
-using GameOn.Server.Data;
+using GameOn.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 // 配置数据库上下文
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<GameOnContext>(options =>
     options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
+        builder.Configuration.GetConnectionString("DefaultConnection"), // Make sure this matches the connection string in appsettings.json
         new MySqlServerVersion(new Version(8, 0, 21)) // MySQL 版本
     ));
 
@@ -33,22 +31,16 @@ builder.Services.AddAuthentication("Bearer")
 // 添加控制器支持
 builder.Services.AddControllers();
 
-
 // Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:5174") // 替换为前端运行的地址
+        policy.WithOrigins("http://localhost:5174") // Update this with the front-end URL if it's different
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
 });
-
-
-
-// 确保在路由前启用 CORS
-
 
 // 添加服务
 builder.Services.AddControllers();
@@ -56,7 +48,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseCors();
 
 // 启用 CORS 策略
 app.UseCors("AllowSpecificOrigin");
@@ -68,6 +59,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication(); // Add this line to use JWT Authentication
 app.UseAuthorization();
+
+// Make sure to map the controllers
 app.MapControllers();
 app.Run();
