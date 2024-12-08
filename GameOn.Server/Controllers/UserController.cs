@@ -52,30 +52,30 @@ namespace GameOn.Server.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public IActionResult Login([FromBody] EmailLoginRequest request)
         {
-            // Find the user by username
-            var user = _context.Users.FirstOrDefault(u => u.Username == request.Username);
+            // Find the user by email
+            var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
 
             if (user == null)
             {
-                return Unauthorized(new { message = "Invalid username or password" });
+                return Unauthorized(new { message = "Invalid email or password" });
             }
 
             // Verify the password
             if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
             {
-                return Unauthorized(new { message = "Invalid username or password" });
+                return Unauthorized(new { message = "Invalid email or password" });
             }
 
             return Ok(new { message = "Login successful", user });
         }
     }
 
-    // DTO for login request
-    public class LoginRequest
+    // DTO for login request with email
+    public class EmailLoginRequest
     {
-        public string Username { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 }
