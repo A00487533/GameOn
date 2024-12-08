@@ -31,7 +31,7 @@ const RegisterPage = () => {
         }
 
         try {
-            const response = await fetch("https://localhost:5173/api/Register/register", {
+            const response = await fetch("https://localhost:5173/api/User/create", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

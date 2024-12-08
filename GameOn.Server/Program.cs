@@ -5,14 +5,14 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 配置数据库上下文
+// Configure Database Context
 builder.Services.AddDbContext<GameOnContext>(options =>
     options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"), // Make sure this matches the connection string in appsettings.json
-        new MySqlServerVersion(new Version(8, 0, 21)) // MySQL 版本
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 21))
     ));
 
-// 配置 JWT 身份验证
+// Configure JWT Authentication
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
     {
@@ -28,30 +28,25 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
-// 添加控制器支持
-builder.Services.AddControllers();
-
-// Add CORS policy
+// Configure CORS
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
+    options.AddPolicy("AllowSpecificOrigin", policy =>
     {
-        policy.WithOrigins("http://localhost:5174") // Update this with the front-end URL if it's different
-            .AllowAnyHeader()
-            .AllowAnyMethod();
+        policy.WithOrigins("http://localhost:5174") // Replace with your frontend's origin
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
-// 添加服务
+// Add services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// 启用 CORS 策略
-app.UseCors("AllowSpecificOrigin");
-
+// Enable Swagger for development environment
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -59,9 +54,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); // Add this line to use JWT Authentication
+
+// Enable CORS Middleware
+app.UseCors("AllowSpecificOrigin");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
-// Make sure to map the controllers
 app.MapControllers();
 app.Run();
