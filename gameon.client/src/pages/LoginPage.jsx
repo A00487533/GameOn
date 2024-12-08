@@ -13,7 +13,7 @@ const LoginPage = () => {
         setError(""); // Clear previous errors
 
         try {
-            const response = await fetch("https://localhost:5001/api/Login/authenticate", {
+            const response = await fetch("https://localhost:5173/api/Login/authenticate", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
