@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/LoginPage.css";
 
@@ -13,7 +13,7 @@ const LoginPage = () => {
         setError(""); // Clear previous errors
 
         try {
-            const response = await fetch("https://localhost:5173/api/Login/authenticate", {
+            const response = await fetch("https://localhost:7097/api/User/login/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -22,9 +22,7 @@ const LoginPage = () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                alert(data.message); // Notify user of successful login
-                navigate("/home"); // Redirect to the home page
+                navigate("/home"); // Redirecśt to the home page
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Login failed. Please try again.");

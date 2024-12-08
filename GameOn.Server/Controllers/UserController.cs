@@ -55,7 +55,7 @@ namespace GameOn.Server.Controllers
         public IActionResult Login([FromBody] EmailLoginRequest request)
         {
             // Find the user by email
-            var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+            var user = _context.Users.FirstOrDefault(u => u.Email == request.email);
 
             if (user == null)
             {
@@ -63,7 +63,7 @@ namespace GameOn.Server.Controllers
             }
 
             // Verify the password
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, user.Password))
+            if (!BCrypt.Net.BCrypt.Verify(request.password, user.Password))
             {
                 return Unauthorized(new { message = "Invalid email or password" });
             }
@@ -75,7 +75,7 @@ namespace GameOn.Server.Controllers
     // DTO for login request with email
     public class EmailLoginRequest
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }
