@@ -32,19 +32,18 @@ namespace GameOn.Server.Controllers
         }
 
         // create a post
-        [HttpPost]
-        public async Task<IActionResult> CreatePost([FromBody] Post newPost)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateNewPost([FromBody] Post newPost)
         {
             if (newPost == null ||
-                string.IsNullOrEmpty(newPost.Description) ||
-                string.IsNullOrEmpty(newPost.Location) ||
                 string.IsNullOrEmpty(newPost.SportName) ||
                 newPost.Date == DateTime.MinValue ||
                 newPost.FromTime == TimeSpan.Zero ||
                 newPost.TillTime == TimeSpan.Zero ||
-                newPost.UserID <= 0)
+                string.IsNullOrEmpty(newPost.Location) ||
+                string.IsNullOrEmpty(newPost.Description))
             {
-                return BadRequest("Invalid post data.");
+                return BadRequest("Invalid post data. Please check all required fields.");
             }
 
             try
@@ -52,7 +51,7 @@ namespace GameOn.Server.Controllers
                 _context.Posts.Add(newPost);
                 await _context.SaveChangesAsync();
 
-                return Ok(new { Message = "Post created successfully!" });
+                return Ok(new { Message = "Post created successfully!", PostID = newPost.PostID });
             }
             catch (Exception ex)
             {
