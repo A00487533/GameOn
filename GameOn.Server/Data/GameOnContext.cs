@@ -16,6 +16,7 @@ namespace GameOn.Server.Models
         public DbSet<Event> Events { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Payment> Payments { get; set; }  // Add this line
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,6 +56,8 @@ namespace GameOn.Server.Models
                 .WithOne(p => p.User)
                 .HasForeignKey(p => p.UserID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            
         }
     }
 }

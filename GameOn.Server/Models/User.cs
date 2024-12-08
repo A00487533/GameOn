@@ -13,9 +13,7 @@ namespace GameOn.Server.Models
 
         public string? FirstName { get; set; } // Optional
         public string? LastName { get; set; } // Optional
-        public DateTime? CreatedAt { get; set; } // Optional
-        public DateTime? UpdatedAt { get; set; } // Optional
-        
+
         // Navigation properties
         public virtual ICollection<Address>? Addresses { get; set; } // Optional
         public virtual ICollection<Contact>? Contacts { get; set; } // Optional

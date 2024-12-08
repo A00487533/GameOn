@@ -137,6 +137,80 @@ namespace GameOn.Server.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("GameOn.Server.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PaymentID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CardHolderName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreditCardNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CreditCardType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ExpirationDate")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaymentID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("GameOn.Server.Models.Post", b =>
                 {
                     b.Property<int>("PostID")
@@ -212,9 +286,6 @@ namespace GameOn.Server.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserID"));
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -228,9 +299,6 @@ namespace GameOn.Server.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -278,6 +346,17 @@ namespace GameOn.Server.Migrations
                 {
                     b.HasOne("GameOn.Server.Models.User", "User")
                         .WithMany("Events")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GameOn.Server.Models.Payment", b =>
+                {
+                    b.HasOne("GameOn.Server.Models.User", "User")
+                        .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
