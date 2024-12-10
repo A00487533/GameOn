@@ -16,7 +16,7 @@ namespace GameOnV2.Server.Models
         public DbSet<Event> Events { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Payment> Payment { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

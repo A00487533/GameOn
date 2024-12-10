@@ -51,7 +51,7 @@ namespace GameOn.Server.Controllers
             };
 
             // Save payment details to the database
-            _context.Payments.Add(payment);
+            _context.Payment.Add(payment);
             _context.SaveChanges();
 
             return Ok(new { message = "Payment details submitted successfully", payment });
