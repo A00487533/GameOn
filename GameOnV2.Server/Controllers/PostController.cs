@@ -15,64 +15,96 @@ public class PostsController : ControllerBase
 
     // GET: api/posts
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
+    public async Task<ActionResult<IEnumerable<object>>> GetPosts()
     {
-        return await _context.Posts.ToListAsync();
+        var postsWithUsernames = await _context.Posts
+            .Include(p => p.User)
+            .Select(p => new
+            {
+                p.Id,
+                p.Description,
+                p.Location,
+                p.FromTime,
+                p.TillTime,
+                p.Date,
+                p.SportName,
+                p.UserID,
+                Username = p.User.Username
+            })
+            .ToListAsync();
+
+        return Ok(postsWithUsernames);
     }
 
-    // GET: api/posts/5
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Post>> GetPost(int id)
+    // POST: api/Post/User
+    [HttpPost("retrieve")]
+    public async Task<ActionResult<IEnumerable<Post>>> GetPostsByUserId([FromBody] UserRequest request)
     {
-        var post = await _context.Posts.FindAsync(id);
-
-        if (post == null)
+        // Check if the user exists
+        var userExists = await _context.Users.AnyAsync(u => u.UserID == request.UserId);
+        if (!userExists)
         {
-            return NotFound();
+            return NotFound(new { message = "User not found." });
         }
 
-        return post;
+        // Retrieve posts for the specified user
+        var posts = await _context.Posts
+            .Where(p => p.UserID == request.UserId)
+            .ToListAsync();
+
+        if (posts == null || !posts.Any())
+        {
+            return NotFound(new { message = "No posts found for the specified user." });
+        }
+
+        return Ok(posts);
     }
 
-    // POST: api/posts
-    [HttpPost]
-    public async Task<ActionResult<Post>> PostPost(Post post)
+
+    // POST: api/Post/create/post
+    [HttpPost("create/post")]
+    public async Task<ActionResult<Post>> CreatePost([FromBody] Post newPost)
     {
-        _context.Posts.Add(post);
+        // Check if the user exists
+        var userExists = await _context.Users.AnyAsync(u => u.UserID == newPost.UserID);
+        if (!userExists)
+        {
+            return NotFound(new { message = "User not found." });
+        }
+
+
+        // Add the new post to the database
+        _context.Posts.Add(newPost);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetPost", new { id = post.Id }, post);
+        // Return the created post with a 201 status code
+        return CreatedAtAction(nameof(CreatePost), new { id = newPost.Id }, newPost);
     }
 
-    // PUT: api/posts/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutPost(int id, Post post)
+    [HttpPut("Post/edit")]
+    public async Task<ActionResult<Post>> EditPost([FromBody] UpdatePostRequest request)
     {
-        if (id != post.Id)
+        // Check if the post exists
+        var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == request.PostID);
+        if (post == null)
         {
-            return BadRequest();
+            return NotFound(new { message = "Post not found." });
         }
 
-        _context.Entry(post).State = EntityState.Modified;
+        // Update post properties
+        post.Description = request.Description ?? post.Description;
+        post.Location = request.Location ?? post.Location;
+        post.FromTime = request.FromTime != default ? request.FromTime : post.FromTime;
+        post.TillTime = request.TillTime != default ? request.TillTime : post.TillTime;
+        post.SportName = request.SportName ?? post.SportName;
 
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!PostExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
+        // Save changes
+        await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(post);
     }
+
+
 
     // DELETE: api/posts/5
     [HttpDelete("{id}")]
@@ -94,4 +126,21 @@ public class PostsController : ControllerBase
     {
         return _context.Posts.Any(e => e.Id == id);
     }
+
+
+}
+
+public class UserRequest
+{
+    public int UserId { get; set; }
+}
+
+public class UpdatePostRequest
+{
+    public int PostID { get; set; }
+    public string Description { get; set; }
+    public string Location { get; set; }
+    public DateTime FromTime { get; set; }
+    public DateTime TillTime { get; set; }
+    public string SportName { get; set; }
 }
