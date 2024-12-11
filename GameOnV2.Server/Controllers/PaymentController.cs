@@ -33,8 +33,7 @@ namespace GameOn.Server.Controllers
             // Create a new payment record
             var payment = new Payment
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
+                
                 Address = request.Address,
                 City = request.City,
                 Province = request.Province,
@@ -61,8 +60,7 @@ namespace GameOn.Server.Controllers
     // DTO for payment request
     public class PaymentRequest
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
         public string Address { get; set; }
         public string City { get; set; }
         public string Province { get; set; }

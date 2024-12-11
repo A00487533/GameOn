@@ -5,8 +5,7 @@ namespace GameOnV2.Server.Models
     public class Payment
     {
         public int PaymentID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+
         public string Address { get; set; }
         public string City { get; set; }
         public string Province { get; set; }

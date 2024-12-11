@@ -4,8 +4,6 @@ import "../styles/PaymentPage.css";
 
 const Payment = () => {
     const [formData, setFormData] = useState({
-        "firstName": "",
-        "lastName": "",
         "address": "",
         "city": "",
         "province": "",
@@ -28,7 +26,7 @@ const Payment = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-
+        
         // Clear the error for the current field
         if (errors[name]) {
             setErrors((prevErrors) => {
@@ -58,7 +56,7 @@ const Payment = () => {
         });
 
         // Character blacklist validation
-        ["firstName", "lastName", "city", "province", "cardHolderName"].forEach(
+        [ "city", "province", "cardHolderName"].forEach(
             (field) => {
                 if (formData[field] && charBlacklist.test(formData[field])) {
                     newErrors[field] = "Invalid characters are not allowed.";
@@ -169,28 +167,7 @@ const Payment = () => {
                 </div>
             )}
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>First Name:</label>
-                    <input
-                        type="text"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                    />
-                    {errors.firstName && (
-                        <p style={{ color: "red" }}>{errors.firstName}</p>
-                    )}
-                </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                    />
-                    {errors.lastName && <p style={{ color: "red" }}>{errors.lastName}</p>}
-                </div>
+                
                 <div>
                     <label>Address:</label>
                     <input
