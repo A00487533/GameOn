@@ -1,17 +1,14 @@
-﻿namespace GameOnV2.Server.Models
-{
-    public class Post
-    {
-        public int PostID { get; set; }
-        public string Description { get; set; }
-        public string Location { get; set; }
-        public TimeSpan FromTime { get; set; }
-        public TimeSpan TillTime { get; set; }
-        public DateTime Date { get; set; }
-        public string SportName { get; set; }
-        public int UserID { get; set; }
+﻿using GameOnV2.Server.Models;
 
-        // Navigation property
-        public virtual User User { get; set; }
-    }
+public class Post
+{
+    public int Id { get; set; }
+    public string Description { get; set; }
+    public string Location { get; set; }
+    public DateTime FromTime { get; set; }
+    public DateTime TillTime { get; set; }
+    public DateTime Date { get; set; }
+    public string SportName { get; set; }
+    public int UserID { get; set; }  // Assuming each post is associated with a user
+    public User User { get; set; }  // Assuming there's a User model
 }
