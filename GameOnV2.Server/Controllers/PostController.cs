@@ -81,6 +81,29 @@ public class PostsController : ControllerBase
         return CreatedAtAction(nameof(CreatePost), new { id = newPost.Id }, newPost);
     }
 
+    [HttpPut("Post/edit")]
+    public async Task<ActionResult<Post>> EditPost([FromBody] UpdatePostRequest request)
+    {
+        // Check if the post exists
+        var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == request.PostID);
+        if (post == null)
+        {
+            return NotFound(new { message = "Post not found." });
+        }
+
+        // Update post properties
+        post.Description = request.Description ?? post.Description;
+        post.Location = request.Location ?? post.Location;
+        post.FromTime = request.FromTime != default ? request.FromTime : post.FromTime;
+        post.TillTime = request.TillTime != default ? request.TillTime : post.TillTime;
+        post.SportName = request.SportName ?? post.SportName;
+
+        // Save changes
+        await _context.SaveChangesAsync();
+
+        return Ok(post);
+    }
+
 
 
 }
