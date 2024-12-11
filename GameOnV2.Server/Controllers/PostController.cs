@@ -36,7 +36,31 @@ public class PostsController : ControllerBase
         return Ok(postsWithUsernames);
     }
 
-    
+    // POST: api/Post/User
+    [HttpPost("retrieve")]
+    public async Task<ActionResult<IEnumerable<Post>>> GetPostsByUserId([FromBody] UserRequest request)
+    {
+        // Check if the user exists
+        var userExists = await _context.Users.AnyAsync(u => u.UserID == request.UserId);
+        if (!userExists)
+        {
+            return NotFound(new { message = "User not found." });
+        }
+
+        // Retrieve posts for the specified user
+        var posts = await _context.Posts
+            .Where(p => p.UserID == request.UserId)
+            .ToListAsync();
+
+        if (posts == null || !posts.Any())
+        {
+            return NotFound(new { message = "No posts found for the specified user." });
+        }
+
+        return Ok(posts);
+    }
+
+
 }
 
 public class UserRequest
