@@ -1,110 +1,340 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+﻿import React, { useState } from "react";
+import { useNavigate, redirect } from "react-router-dom"; // Ensure your project uses React Router for navigation.
 import "../styles/PaymentPage.css";
 
-const PaymentPage = () => {
-    const navigate = useNavigate();
-    const [paymentDetails, setPaymentDetails] = useState({
-        cardNumber: "",
-        expiryDate: "",
-        cvv: "",
-        cardHolderName: "",
+const Payment = () => {
+    const [formData, setFormData] = useState({
+        "firstName": "",
+        "lastName": "",
+        "address": "",
+        "city": "",
+        "province": "",
+        "country": "",
+        "postalCode": "",
+        "countryCode": "",
+        "phoneNumber": "",
+        "email": "",
+        "creditCardType": "",
+        "creditCardNumber": "",
+        "expirationDate": "",
+        "cardHolderName": ""
     });
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [error, setError] = useState("");
+    
+    const [errors, setErrors] = useState({});
+    const [submissionSuccess, setSubmissionSuccess] = useState(false);
+    const [apiError, setApiError] = useState(null);
+    const navigate = useNavigate(); // For navigation after successful submission
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setPaymentDetails((prevDetails) => ({
-            ...prevDetails,
-            [name]: value,
-        }));
-    };
+        setFormData({ ...formData, [name]: value });
 
-    const handlePayment = async (e) => {
-        e.preventDefault();
-        setIsProcessing(true);
-        setError("");
-
-        // Simulate backend API call
-        try {
-            const response = await fetch("https://localhost:7052/api/Payment/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(paymentDetails),
+        // Clear the error for the current field
+        if (errors[name]) {
+            setErrors((prevErrors) => {
+                const newErrors = { ...prevErrors };
+                delete newErrors[name];
+                return newErrors;
             });
-
-            if (response.ok) {
-                alert("Payment successful!");
-                navigate("/home"); // Redirect to home page
-            } else {
-                const data = await response.json();
-                setError(data.message || "Payment failed. Please try again.");
-            }
-        } catch (error) {
-            setError("An error occurred. Please try again.");
-        } finally {
-            setIsProcessing(false);
         }
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+        const charBlacklist = /[;:!@#$%^*+?\\/<>1234567890]/;
+        const canadianPostalCode = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+        const usZipCode = /^\d{5}(-\d{4})?$/;
+        const phoneNumberPattern = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/; // Valid 10-digit number
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const creditCardPattern = /^\d+$/;
+        const expirationDatePattern =
+            /^(0[1-9]|1[0-2])\/(201[6-9]|202[0-9]|2030|2031)$/;
+
+        // Required fields
+        Object.keys(formData).forEach((field) => {
+            if (!formData[field] && field !== "countryCode") {
+                newErrors[field] = "This field is required.";
+            }
+        });
+
+        // Character blacklist validation
+        ["firstName", "lastName", "city", "province", "cardHolderName"].forEach(
+            (field) => {
+                if (formData[field] && charBlacklist.test(formData[field])) {
+                    newErrors[field] = "Invalid characters are not allowed.";
+                }
+            }
+        );
+
+        // Country-specific validations
+        if (
+            formData.country === "Canada" &&
+            !canadianPostalCode.test(formData.postalCode)
+        ) {
+            newErrors.postalCode = "Invalid Canadian postal code.";
+        }
+
+        if (formData.country === "US" && !usZipCode.test(formData.postalCode)) {
+            newErrors.postalCode = "Invalid US zip code.";
+        }
+
+        if (
+            formData.phoneNumber &&
+            !phoneNumberPattern.test(formData.phoneNumber)
+        ) {
+            newErrors.phoneNumber = "Invalid phone number. Must be 10 digits.";
+        }
+
+        // Validate country code
+        if (formData.countryCode !== "+1") {
+            newErrors.phoneNumber = "Invalid country code.";
+        }
+
+        // Email validation
+        if (formData.email && !emailPattern.test(formData.email)) {
+            newErrors.email = "Invalid email address.";
+        }
+
+        // Credit card type and number validation
+        if (!formData.creditCardType) {
+            newErrors.creditCardType = "Credit card type is required.";
+        }
+
+        if (
+            formData.creditCardNumber &&
+            !creditCardPattern.test(formData.creditCardNumber)
+        ) {
+            newErrors.creditCardNumber =
+                "Credit card number must contain only digits.";
+        } else {
+            const cardNumber = formData.creditCardNumber;
+            if (
+                formData.creditCardType === "MasterCard" &&
+                !/^5[1-5]/.test(cardNumber)
+            ) {
+                newErrors.creditCardNumber = "Invalid MasterCard number.";
+            } else if (formData.creditCardType === "Visa" && !/^4/.test(cardNumber)) {
+                newErrors.creditCardNumber = "Invalid Visa card number.";
+            } else if (
+                formData.creditCardType === "American Express" &&
+                !/^3[47]/.test(cardNumber)
+            ) {
+                newErrors.creditCardNumber = "Invalid American Express card number.";
+            }
+        }
+
+        // Expiration date validation
+        if (
+            formData.expirationDate &&
+            !expirationDatePattern.test(formData.expirationDate)
+        ) {
+            newErrors.expirationDate =
+                "Expiration date must be in MM/YYYY format and valid.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch('https://localhost:7052/api/Payment/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP status ${response.status}`);
+            }
+            else {
+                navigate("/home"); // Redirecśt to the home page
+            }
+
+            const data = await response.json();
+            console.log('Payment successful:', data);
+        } catch (error) {
+            console.error('Error submitting payment:', error);
+        }
+    };
+
+
     return (
-        <div className="payment-page">
-            <h2>Complete Your Payment</h2>
-            <form onSubmit={handlePayment} className="payment-form">
-                <div className="form-group">
-                    <label htmlFor="cardHolderName">Cardholder Name</label>
+        <div style={{ margin: "20px auto", maxWidth: "500px" }}>
+            <h2>Payment Page</h2>
+            {submissionSuccess && (
+                <div style={{ color: "green", marginBottom: "10px" }}>
+                    Payment submitted successfully!
+                </div>
+            )}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>First Name:</label>
                     <input
                         type="text"
-                        id="cardHolderName"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                    />
+                    {errors.firstName && (
+                        <p style={{ color: "red" }}>{errors.firstName}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Last Name:</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                    />
+                    {errors.lastName && <p style={{ color: "red" }}>{errors.lastName}</p>}
+                </div>
+                <div>
+                    <label>Address:</label>
+                    <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleInputChange}
+                    />
+                    {errors.address && <p style={{ color: "red" }}>{errors.address}</p>}
+                </div>
+                <div>
+                    <label>City:</label>
+                    <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleInputChange}
+                    />
+                    {errors.city && <p style={{ color: "red" }}>{errors.city}</p>}
+                </div>
+                <div>
+                    <label>Province:</label>
+                    <input
+                        type="text"
+                        name="province"
+                        value={formData.province}
+                        onChange={handleInputChange}
+                    />
+                    {errors.province && <p style={{ color: "red" }}>{errors.province}</p>}
+                </div>
+                <div>
+                    <label>Postal Code:</label>
+                    <input
+                        type="text"
+                        name="postalCode"
+                        value={formData.postalCode}
+                        onChange={handleInputChange}
+                    />
+                    {errors.postalCode && (
+                        <p style={{ color: "red" }}>{errors.postalCode}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Country:</label>
+                    <select
+                        name="country"
+                        value={formData.country}
+                        onChange={handleInputChange}
+                    >
+                        <option value="Canada">Canada</option>
+                        <option value="US">US</option>
+                    </select>
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <div>
+                        <select
+                            name="countryCode"
+                            value={formData.countryCode}
+                            onChange={handleInputChange}
+                        >
+                            <option value="+1">+1</option>
+                            <option value="+44">+44</option>
+                            <option value="+91">+91</option>
+                            <option value="+61">+61</option>
+                        </select>
+                    </div>
+                    <input
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="Phone Number"
+                        value={formData.phoneNumber}
+                        onChange={handleInputChange}
+                    />
+                    {errors.phoneNumber && (
+                        <p style={{ color: "red" }}>{errors.phoneNumber}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                    />
+                    {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+                </div>
+                <div>
+                    <label>Credit Card Type:</label>
+                    <select
+                        name="creditCardType"
+                        value={formData.creditCardType}
+                        onChange={handleInputChange}
+                    >
+                        <option value="">Select</option>
+                        <option value="Visa">Visa</option>
+                        <option value="MasterCard">MasterCard</option>
+                        <option value="American Express">American Express</option>
+                    </select>
+                    {errors.creditCardType && (
+                        <p style={{ color: "red" }}>{errors.creditCardType}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Credit Card Number:</label>
+                    <input
+                        type="text"
+                        name="creditCardNumber"
+                        value={formData.creditCardNumber}
+                        onChange={handleInputChange}
+                    />
+                    {errors.creditCardNumber && (
+                        <p style={{ color: "red" }}>{errors.creditCardNumber}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Expiration Date:</label>
+                    <input
+                        type="text"
+                        name="expirationDate"
+                        placeholder="MM/YYYY"
+                        value={formData.expirationDate}
+                        onChange={handleInputChange}
+                    />
+                    {errors.expirationDate && (
+                        <p style={{ color: "red" }}>{errors.expirationDate}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Card Holder Name:</label>
+                    <input
+                        type="text"
                         name="cardHolderName"
-                        value={paymentDetails.cardHolderName}
+                        value={formData.cardHolderName}
                         onChange={handleInputChange}
-                        required
                     />
+                    {errors.cardHolderName && (
+                        <p style={{ color: "red" }}>{errors.cardHolderName}</p>
+                    )}
                 </div>
-                <div className="form-group">
-                    <label htmlFor="cardNumber">Card Number</label>
-                    <input
-                        type="text"
-                        id="cardNumber"
-                        name="cardNumber"
-                        value={paymentDetails.cardNumber}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="expiryDate">Expiry Date (MM/YY)</label>
-                    <input
-                        type="text"
-                        id="expiryDate"
-                        name="expiryDate"
-                        value={paymentDetails.expiryDate}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="cvv">CVV</label>
-                    <input
-                        type="password"
-                        id="cvv"
-                        name="cvv"
-                        value={paymentDetails.cvv}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
-                {error && <p className="error-message">{error}</p>}
-                <button type="submit" className="pay-button" disabled={isProcessing}>
-                    {isProcessing ? "Processing..." : "Pay Now"}
-                </button>
+                <button type="submit">Submit Payment</button>
             </form>
         </div>
     );
 };
 
-export default PaymentPage;
+export default Payment;
