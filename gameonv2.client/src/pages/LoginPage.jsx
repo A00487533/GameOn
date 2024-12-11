@@ -1,5 +1,6 @@
 ﻿import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; // Import js-cookie library
 import "../styles/LoginPage.css";
 
 const LoginPage = () => {
@@ -22,7 +23,12 @@ const LoginPage = () => {
             });
 
             if (response.ok) {
-                navigate("/home"); // Redirecśt to the home page
+                const data = await response.json(); // Parse the response JSON
+
+                // Save UserID to a cookie
+                Cookies.set("UserID", data.UserID, { expires: 7 }); // Cookie expires in 7 days
+
+                navigate("/home"); // Redirect to the home page
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Login failed. Please try again.");

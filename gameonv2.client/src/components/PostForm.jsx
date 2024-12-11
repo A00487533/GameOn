@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PostForm = ({ onSubmit, onCancel, initialData }) => {
+const PostForm = ({ onCancel, initialData }) => {
     const [sportName, setSportName] = useState(initialData?.sportName || "");
     const [date, setDate] = useState(initialData?.date || "");
     const [fromTime, setFromTime] = useState(initialData?.fromTime || "");
@@ -11,7 +11,7 @@ const PostForm = ({ onSubmit, onCancel, initialData }) => {
     );
     const [location, setLocation] = useState(initialData?.location || ""); // New field
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validation for time and date
@@ -25,7 +25,7 @@ const PostForm = ({ onSubmit, onCancel, initialData }) => {
             return;
         }
 
-        onSubmit({
+        const postData = {
             sportName,
             date,
             fromTime,
@@ -33,7 +33,31 @@ const PostForm = ({ onSubmit, onCancel, initialData }) => {
             address,
             description,
             location,
-        });
+            userID,
+        };
+
+        try {
+            const response = await fetch("https://localhost:7052/api/Posts/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(postData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            console.log("Post saved successfully:", responseData);
+
+            // Optional: Notify parent component or redirect
+            alert("Post saved successfully!");
+        } catch (error) {
+            console.error("Error saving post:", error);
+            alert("Failed to save post. Please try again later.");
+        }
     };
 
     return (

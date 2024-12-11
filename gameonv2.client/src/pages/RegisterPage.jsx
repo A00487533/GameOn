@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "../styles/RegisterPage.css";
 
 const RegisterPage = () => {
@@ -8,6 +10,7 @@ const RegisterPage = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -41,11 +44,18 @@ const RegisterPage = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setSuccess(data.message);
+
+                // Save UserID to cookie
+                Cookies.set("UserID", data.userId, { expires: 7 });
+
+                setSuccess("Registration successful!");
                 setUsername("");
                 setEmail("");
                 setPassword("");
                 setConfirmPassword("");
+
+                // Redirect to home or login page
+                navigate("/home");
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Registration failed. Please try again.");
