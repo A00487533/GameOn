@@ -8,7 +8,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: GameOn/gameonv2.client/
+        working-directory: gameonv2.client/
 
     steps:
     - name: Checkout repository
