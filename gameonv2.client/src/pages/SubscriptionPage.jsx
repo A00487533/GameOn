@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "../styles/SubscriptionPage.css";
 
 const SubscriptionPage = ({ history }) => {
     const [selectedPlan, setSelectedPlan] = useState("");
+    const navigate = useNavigate();
 
     const handleSelectPlan = (plan) => {
         setSelectedPlan(plan);
@@ -14,7 +16,7 @@ const SubscriptionPage = ({ history }) => {
             return;
         }
         // Redirect to Payment Page
-        history.push("/payment", { plan: selectedPlan });
+        navigate("/payment");
     };
 
     return (

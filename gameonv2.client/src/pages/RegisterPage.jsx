@@ -54,8 +54,8 @@ const RegisterPage = () => {
                 setPassword("");
                 setConfirmPassword("");
 
-                // Redirect to home or login page
-                navigate("/home");
+                // Redirect to Subscription page
+                navigate("/subscription");
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Registration failed. Please try again.");

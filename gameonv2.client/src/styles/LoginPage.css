@@ -51,3 +51,16 @@
     .login-button:hover {
         background-color: #0056b3;
     }
+
+.register-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-button2 {
+    cursor: pointer;
+}
+
+.register-button:hover {
+   background-color: #0056b3;
+  }
