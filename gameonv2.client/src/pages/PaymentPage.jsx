@@ -19,7 +19,7 @@ const Payment = () => {
         "expirationDate": "",
         "cardHolderName": ""
     });
-    
+
     const [errors, setErrors] = useState({});
     const [submissionSuccess, setSubmissionSuccess] = useState(false);
     const [apiError, setApiError] = useState(null);
@@ -161,7 +161,7 @@ const Payment = () => {
 
 
     return (
-        <div style={{ margin: "20px auto", maxWidth: "500px" }}>
+        <div className="container" style={{ margin: "20px auto", maxWidth: "500px" }}>
             <h2>Payment Page</h2>
             {submissionSuccess && (
                 <div style={{ color: "green", marginBottom: "10px" }}>

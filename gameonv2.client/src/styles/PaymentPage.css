@@ -3,13 +3,14 @@
 /* Center the container */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
     padding: 0;
+    
 }
 
-div {
-    margin: 0 auto;
+div.container {
+    margin: 20px auto;
     max-width: 500px;
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -57,7 +58,7 @@ select {
     }
 
 /* Error messages */
-p {
+p.error-message {
     color: #ff0000;
     font-size: 12px;
     margin-top: -10px;
