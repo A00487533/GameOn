@@ -61,6 +61,28 @@ public class PostsController : ControllerBase
     }
 
 
+    // POST: api/Post/create/post
+    [HttpPost("create/post")]
+    public async Task<ActionResult<Post>> CreatePost([FromBody] Post newPost)
+    {
+        // Check if the user exists
+        var userExists = await _context.Users.AnyAsync(u => u.UserID == newPost.UserID);
+        if (!userExists)
+        {
+            return NotFound(new { message = "User not found." });
+        }
+
+
+        // Add the new post to the database
+        _context.Posts.Add(newPost);
+        await _context.SaveChangesAsync();
+
+        // Return the created post with a 201 status code
+        return CreatedAtAction(nameof(CreatePost), new { id = newPost.Id }, newPost);
+    }
+
+
+
 }
 
 public class UserRequest
