@@ -1,6 +1,8 @@
 ﻿using GameOnV2.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -26,7 +28,7 @@ public class PostsController : ControllerBase
                 p.Location,
                 p.FromTime,
                 p.TillTime,
-                p.Date,
+                p.Date1,
                 p.SportName,
                 p.UserID,
                 Username = p.User.Username
@@ -65,20 +67,60 @@ public class PostsController : ControllerBase
     [HttpPost("create/post")]
     public async Task<ActionResult<Post>> CreatePost([FromBody] Post newPost)
     {
+
+
         // Check if the user exists
-        var userExists = await _context.Users.AnyAsync(u => u.UserID == newPost.UserID);
-        if (!userExists)
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == newPost.UserID);
+        if (user == null)
         {
             return NotFound(new { message = "User not found." });
         }
 
-
+        //newPost.User = user;
+        //Console.WriteLine(newPost);
+        
         // Add the new post to the database
         _context.Posts.Add(newPost);
         await _context.SaveChangesAsync();
 
         // Return the created post with a 201 status code
         return CreatedAtAction(nameof(CreatePost), new { id = newPost.Id }, newPost);
+    }
+
+
+    // GET: api/posts/filter?location={location}&sportName={sportName}&fromDate={fromDate}
+    [HttpGet("filter")]
+    public async Task<ActionResult<IEnumerable<Post>>> GetFilteredPosts(
+        string location, string sportName, DateTime fromDate)
+    {
+        var query = _context.Posts.AsQueryable();
+
+        // Filter by location
+        if (!string.IsNullOrEmpty(location))
+        {
+            query = query.Where(p => p.Location.ToLower() == location.ToLower());
+        }
+
+        // Filter by sport name
+        if (!string.IsNullOrEmpty(sportName))
+        {
+            query = query.Where(p => p.SportName.ToLower() == sportName.ToLower());
+        }
+
+        // Filter by from date (assuming Date1 property represents the start date)
+        if (fromDate != default)
+        {
+            query = query.Where(p => p.Date1 >= fromDate);
+        }
+
+        var filteredPosts = await query.ToListAsync();
+
+        if (!filteredPosts.Any())
+        {
+            return NotFound(new { message = "No posts found matching the filter criteria." });
+        }
+
+        return Ok(filteredPosts);
     }
 
     [HttpPut("Post/edit")]

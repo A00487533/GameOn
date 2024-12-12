@@ -1,39 +1,67 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie"; // Import js-cookie library
+
+
 
 const PostForm = ({ onCancel, initialData }) => {
-    const [sportName, setSportName] = useState(initialData?.sportName || "");
-    const [date, setDate] = useState(initialData?.date || "");
-    const [fromTime, setFromTime] = useState(initialData?.fromTime || "");
-    const [toTime, setToTime] = useState(initialData?.toTime || "");
+    const [SportName, setSportName] = useState(initialData?.SportName || "");
+    const [Datee, setDate] = useState(initialData?.Datee || "");
+    const [FromTime, setFromTime] = useState(initialData?.FromTime || "");
+    const [TillTime, setTillTime] = useState(initialData?.TillTime || "");
     const [address, setAddress] = useState(initialData?.address || "");
-    const [description, setDescription] = useState(
-        initialData?.description || ""
+    const [Description, setDescription] = useState(
+        initialData?.Description || ""
     );
-    const [location, setLocation] = useState(initialData?.location || ""); // New field
+    const [Location, setLocation] = useState(initialData?.Location || ""); // New field
+
+    const formatTime = (timeString, Date1) => {
+        // Create a Date object with the user-entered time
+        const date = new Date(`1970-01-01T${timeString}:00`);
+        console.log(Date1);
+        // Split the date string into year, month, and day parts
+        const [year1, month1, day1] = Date1.split("-");
+
+        // Get year, month, day, hours, minutes, seconds, and milliseconds
+        const year = year1;
+        const month = String(month1).padStart(2, '0'); // Pad month with leading zero
+        const day = String(day1).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+
+        // Build the formatted string
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Validation for time and date
         const currentDate = new Date().toISOString().split("T")[0];
-        if (date < currentDate) {
+        if (Datee < currentDate) {
             alert("The date cannot be in the past.");
             return;
         }
-        if (toTime <= fromTime) {
+        if (TillTime <= FromTime) {
             alert("The 'To Time' should be greater than 'From Time'.");
             return;
         }
 
+        const UserID = Cookies.get("UserID");
+        console.log("User ID " + UserID + " is logged in!");
+
+        const formattedFromTime = formatTime(FromTime,Datee);
+        const formattedTillTime = formatTime(TillTime,Datee);
+        
         const postData = {
-            sportName,
-            date,
-            fromTime,
-            toTime,
-            address,
-            description,
-            location,
-            userID,
+            SportName,
+            Date1: Datee,
+            FromTime: formattedFromTime,
+            TillTime: formattedTillTime,
+            Description,
+            Location,
+            UserID,
         };
 
         try {
@@ -46,7 +74,7 @@ const PostForm = ({ onCancel, initialData }) => {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error(`HTTP error! Status: ${response.error}`);
             }
 
             const responseData = await response.json();
@@ -66,7 +94,7 @@ const PostForm = ({ onCancel, initialData }) => {
 
             <label>Sport Name</label>
             <select
-                value={sportName}
+                value={SportName}
                 onChange={(e) => setSportName(e.target.value)}
                 required
             >
@@ -86,7 +114,7 @@ const PostForm = ({ onCancel, initialData }) => {
             <label>Date</label>
             <input
                 type="date"
-                value={date}
+                value={Datee}
                 onChange={(e) => setDate(e.target.value)}
                 required
             />
@@ -94,7 +122,7 @@ const PostForm = ({ onCancel, initialData }) => {
             <label>From Time</label>
             <input
                 type="time"
-                value={fromTime}
+                value={FromTime}
                 onChange={(e) => setFromTime(e.target.value)}
                 required
             />
@@ -102,14 +130,14 @@ const PostForm = ({ onCancel, initialData }) => {
             <label>To Time</label>
             <input
                 type="time"
-                value={toTime}
-                onChange={(e) => setToTime(e.target.value)}
+                value={TillTime}
+                onChange={(e) => setTillTime(e.target.value)}
                 required
             />
 
             <label>Location</label>
             <select
-                value={location}
+                value={Location}
                 onChange={(e) => setLocation(e.target.value)}
                 required
             >
@@ -135,7 +163,7 @@ const PostForm = ({ onCancel, initialData }) => {
 
             <label>Description</label>
             <textarea
-                value={description}
+                value={Description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Enter description"
                 required

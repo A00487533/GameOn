@@ -1,62 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/FindGame.css";
 
 const FindGame = () => {
     const [sport, setSport] = useState("");
     const [date, setDate] = useState("");
-    const [fromTime, setFromTime] = useState("");
     const [location, setLocation] = useState("");
+    const [posts, setPosts] = useState([]);
+    const [originalPosts, setOriginalPosts] = useState([]);
 
-    const [filteredPosts, setFilteredPosts] = useState([]);
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch("https://localhost:7052/api/Posts");
+                const data = await response.json();
+                setPosts(data);
+                setOriginalPosts(data);
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            }
+        };
 
-    const dummyPosts = [
-        {
-            sportName: "Cricket",
-            date: "2024-12-15",
-            fromTime: "10:00",
-            toTime: "12:00",
-            location: "Halifax",
-            address: "123 Main Street",
-            description: "Friendly cricket match at the park.",
-        },
-        {
-            sportName: "Basketball",
-            date: "2024-12-16",
-            fromTime: "14:00",
-            toTime: "16:00",
-            location: "Dartmouth",
-            address: "456 Basketball Court",
-            description: "Join us for a competitive game of basketball.",
-        },
-        {
-            sportName: "Tennis",
-            date: "2024-12-17",
-            fromTime: "09:00",
-            toTime: "11:00",
-            location: "Clayton Park",
-            address: "789 Tennis Arena",
-            description: "Tennis practice for beginners and intermediates.",
-        },
-    ];
+        fetchPosts();
+    }, []);
 
     const applyFilter = () => {
-        const filtered = dummyPosts.filter((post) => {
+        const filtered = originalPosts.filter((post) => {
             return (
                 (sport === "" || post.sportName === sport) &&
-                (date === "" || post.date === date) &&
-                (fromTime === "" || post.fromTime >= fromTime) &&
+                (date === "" || new Date(post.date1).toISOString().split('T')[0] === date) &&
                 (location === "" || post.location === location)
             );
         });
-        setFilteredPosts(filtered);
+        setPosts(filtered);
     };
 
     const clearFilter = () => {
         setSport("");
         setDate("");
-        setFromTime("");
         setLocation("");
-        setFilteredPosts(dummyPosts);
+        setPosts(originalPosts);
+    };
+
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
+    const formatTime = (timeString) => {
+        return new Date(timeString).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     };
 
     return (
@@ -77,13 +68,6 @@ const FindGame = () => {
                     placeholder="Select Date"
                 />
 
-                <input
-                    type="time"
-                    value={fromTime}
-                    onChange={(e) => setFromTime(e.target.value)}
-                    placeholder="From Time"
-                />
-
                 <select value={location} onChange={(e) => setLocation(e.target.value)}>
                     <option value="">Select Location</option>
                     <option value="Halifax">Halifax</option>
@@ -98,24 +82,18 @@ const FindGame = () => {
             </div>
 
             <div className="post-results">
-                {filteredPosts.length > 0 ? (
-                    filteredPosts.map((post, index) => (
+                {posts.length > 0 ? (
+                    posts.map((post, index) => (
                         <div key={index} className="post-tile">
                             <h3>{post.sportName}</h3>
                             <p>
-                                <strong>Date:</strong> {post.date}
+                                <strong>Date:</strong> {formatDate(post.date1)}
                             </p>
                             <p>
-                                <strong>Time:</strong> {post.fromTime} - {post.toTime}
+                                <strong>Time:</strong> {formatTime(post.fromTime)} - {formatTime(post.tillTime)}
                             </p>
                             <p>
                                 <strong>Location:</strong> {post.location}
-                            </p>
-                            <p>
-                                <strong>Address:</strong> {post.address}
-                            </p>
-                            <p>
-                                <strong>Description:</strong> {post.description}
                             </p>
                         </div>
                     ))

@@ -26,9 +26,10 @@ const LoginPage = () => {
 
             if (response.ok) {
                 const data = await response.json(); // Parse the response JSON
-
+                
+                console.log(data.user.userID);
                 // Save UserID to a cookie
-                Cookies.set("UserID", data.UserID, { expires: 7 }); // Cookie expires in 7 days
+                Cookies.set("UserID", data.user.userID, { expires: 7 }); // Cookie expires in 7 days
 
                 navigate("/home"); // Redirect to the home page
             } else {
