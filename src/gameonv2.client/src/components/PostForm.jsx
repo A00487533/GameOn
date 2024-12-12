@@ -89,7 +89,7 @@ const PostForm = ({ onCancel, initialData }) => {
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
-            <h3>{initialData ? "Edit Post" : "Create New Post"}</h3>
+            {<h3>{initialData ? "Edit Post" : "Create New Post"}</h3>}
 
             <label>Sport Name</label>
             <select

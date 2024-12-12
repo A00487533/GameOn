@@ -1,0 +1,25 @@
+trigger:
+- azure
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '22.8.0'
+  displayName: 'Install Node.js'
+
+- script: |
+    cd src/gameonv2.client/
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '../../src/gameonv2.client/'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

@@ -1,0 +1,277 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\styles\\findgame.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\styles\\findgame.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\pages\\findgamepage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\pages\\findgamepage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\components\\posttile.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\components\\posttile.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\pages\\postgamepage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\pages\\postgamepage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\components\\postform.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\components\\postform.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.server\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|solutionrelative:gameonv2.server\\controllers\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.server\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|solutionrelative:gameonv2.server\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.server\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|solutionrelative:gameonv2.server\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\pages\\paymentpage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\pages\\paymentpage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\components\\payment.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\components\\payment.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|solutionrelative:gameonv2.server\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|solutionrelative:gameonv2.server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5820E9D2-BC5E-431E-AC22-FDF5F2DD9B8C}|GameOnV2.Server\\GameOnV2.Server.csproj|solutionrelative:gameonv2.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\styles\\loginpage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\styles\\loginpage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|c:\\users\\koush\\onedrive\\desktop\\softwarefinal project\\gameon-v3\\gameon\\gameonv2.client\\src\\components\\register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{EE8B83DD-182B-4D61-A9C8-DF67A4850F09}|gameonv2.client\\gameonv2.client.esproj|solutionrelative:gameonv2.client\\src\\components\\register.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PostController.cs",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Controllers\\PostController.cs",
+              "RelativeDocumentMoniker": "GameOnV2.Server\\Controllers\\PostController.cs",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Controllers\\PostController.cs",
+              "RelativeToolTip": "GameOnV2.Server\\Controllers\\PostController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T14:11:18.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PostForm.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\PostForm.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\components\\PostForm.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\PostForm.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\components\\PostForm.jsx",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAD0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-11T23:00:04.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentPage.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\pages\\PaymentPage.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\pages\\PaymentPage.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\pages\\PaymentPage.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\pages\\PaymentPage.jsx",
+              "ViewState": "AgIAAI4AAAAAAAAAAIAwwJ0AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-12T14:22:46.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Post.cs",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Models\\Post.cs",
+              "RelativeDocumentMoniker": "GameOnV2.Server\\Models\\Post.cs",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Models\\Post.cs",
+              "RelativeToolTip": "GameOnV2.Server\\Models\\Post.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAA1wAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T04:36:58.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FindGamePage.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\pages\\FindGamePage.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\pages\\FindGamePage.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\pages\\FindGamePage.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\pages\\FindGamePage.jsx",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAwwG4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-12T02:49:27.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FindGame.css",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\styles\\FindGame.css",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\styles\\FindGame.css",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\styles\\FindGame.css",
+              "RelativeToolTip": "gameonv2.client\\src\\styles\\FindGame.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-12-12T13:38:33.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostTile.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\PostTile.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\components\\PostTile.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\PostTile.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\components\\PostTile.jsx",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAwwJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-12T14:17:44.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "GameOnV2.Server\\Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Models\\Payment.cs",
+              "RelativeToolTip": "GameOnV2.Server\\Models\\Payment.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAywBkAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T14:26:26.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PostgamePage.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\pages\\PostgamePage.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\pages\\PostgamePage.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\pages\\PostgamePage.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\pages\\PostgamePage.jsx",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAiwJoAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-12T15:02:58.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "GameOnV2.Server\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Controllers\\UserController.cs",
+              "RelativeToolTip": "GameOnV2.Server\\Controllers\\UserController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T14:10:59.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Payment.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\Payment.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\components\\Payment.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\Payment.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\components\\Payment.jsx",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-10T02:21:58.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Program.cs",
+              "RelativeDocumentMoniker": "GameOnV2.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Program.cs",
+              "RelativeToolTip": "GameOnV2.Server\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T22:39:56.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Models\\User.cs",
+              "RelativeDocumentMoniker": "GameOnV2.Server\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\GameOnV2.Server\\Models\\User.cs",
+              "RelativeToolTip": "GameOnV2.Server\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T04:37:15.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoginPage.css",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\styles\\LoginPage.css",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\styles\\LoginPage.css",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\styles\\LoginPage.css",
+              "RelativeToolTip": "gameonv2.client\\src\\styles\\LoginPage.css",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAADsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-12-11T04:42:05.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Register.jsx",
+              "DocumentMoniker": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\Register.jsx",
+              "RelativeDocumentMoniker": "gameonv2.client\\src\\components\\Register.jsx",
+              "ToolTip": "C:\\Users\\koush\\OneDrive\\Desktop\\SoftwareFinal Project\\GameOn-V3\\GameOn\\gameonv2.client\\src\\components\\Register.jsx",
+              "RelativeToolTip": "gameonv2.client\\src\\components\\Register.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-12-10T02:18:35.008Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
