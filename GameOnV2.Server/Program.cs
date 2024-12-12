@@ -13,16 +13,7 @@ builder.Services.AddDbContext<GameOnContext>(options =>
         new MySqlServerVersion(new Version(8, 0, 21))
     ));
 
-// Configure CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin", policy =>
-    {
-        policy.WithOrigins("http://localhost:5174") 
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
+
 
 
 builder.Services.AddControllers();
@@ -30,6 +21,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -43,8 +36,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Enable CORS Middleware
-app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

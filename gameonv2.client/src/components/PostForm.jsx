@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie"; // Import js-cookie library
+import "../styles/postform.css";
 
 
 
@@ -14,28 +15,20 @@ const PostForm = ({ onCancel, initialData }) => {
     );
     const [Location, setLocation] = useState(initialData?.Location || ""); // New field
 
-    const formatTime = (timeString, Date1) => {
-        // Create a Date object with the user-entered time
-        const date = new Date(`1970-01-01T${timeString}:00`);
-        console.log(Date1);
-        // Split the date string into year, month, and day parts
-        const [year1, month1, day1] = Date1.split("-");
-
-        // Get year, month, day, hours, minutes, seconds, and milliseconds
-        const year = year1;
-        const month = String(month1).padStart(2, '0'); // Pad month with leading zero
-        const day = String(day1).padStart(2, '0');
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
-
-        // Build the formatted string
-        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
+    const formatTime = (timeString, dateString) => {
+        const dateTime = new Date(`${dateString}T${timeString}`);
+        return dateTime.toISOString(); // Automatically formats to ISO 8601
     };
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+
 
         // Validation for time and date
         const currentDate = new Date().toISOString().split("T")[0];
@@ -55,17 +48,17 @@ const PostForm = ({ onCancel, initialData }) => {
         const formattedTillTime = formatTime(TillTime,Datee);
         
         const postData = {
-            SportName,
-            Date1: Datee,
-            FromTime: formattedFromTime,
-            TillTime: formattedTillTime,
             Description,
             Location,
+            FromTime: formattedFromTime,
+            TillTime: formattedTillTime,
+            Date1: Datee,
+            SportName,
             UserID,
         };
 
         try {
-            const response = await fetch("https://localhost:7052/api/Posts/create", {
+            const response = await fetch("https://localhost:7052/api/Posts/create/post", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,7 +67,8 @@ const PostForm = ({ onCancel, initialData }) => {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.error}`);
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
             }
 
             const responseData = await response.json();
@@ -84,7 +78,8 @@ const PostForm = ({ onCancel, initialData }) => {
             alert("Post saved successfully!");
         } catch (error) {
             console.error("Error saving post:", error);
-            alert("Failed to save post. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -169,11 +164,15 @@ const PostForm = ({ onCancel, initialData }) => {
                 required
             />
 
-            <button type="submit">{initialData ? "Update Post" : "Post"}</button>
+            <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : initialData ? "Update Post" : "Post"}
+            </button>
             <button type="button" className="cancel-button" onClick={onCancel}>
                 Cancel
             </button>
         </form>
+
+        
     );
 };
 

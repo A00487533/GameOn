@@ -67,7 +67,16 @@ public class PostsController : ControllerBase
     [HttpPost("create/post")]
     public async Task<ActionResult<Post>> CreatePost([FromBody] Post newPost)
     {
+        if (newPost == null)
+        {
+            return BadRequest(new { message = "Post data is missing or invalid." });
+        }
 
+        // Validate required fields in the post
+        if (string.IsNullOrWhiteSpace(newPost.SportName) || string.IsNullOrWhiteSpace(newPost.Location) || newPost.Date1 == null)
+        {
+            return BadRequest(new { message = "Required fields are missing: SportName, Location, or Date." });
+        }
 
         // Check if the user exists
         var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == newPost.UserID);
@@ -76,16 +85,26 @@ public class PostsController : ControllerBase
             return NotFound(new { message = "User not found." });
         }
 
-        //newPost.User = user;
-        //Console.WriteLine(newPost);
-        
-        // Add the new post to the database
-        _context.Posts.Add(newPost);
-        await _context.SaveChangesAsync();
+        try
+        {
+            // Optional: Attach the user explicitly if it's part of the Post model
+            newPost.User = user;
 
-        // Return the created post with a 201 status code
-        return CreatedAtAction(nameof(CreatePost), new { id = newPost.Id }, newPost);
+            // Add the new post to the database
+            _context.Posts.Add(newPost);
+            await _context.SaveChangesAsync();
+
+            // Return the created post with a 201 status code
+            return CreatedAtAction(nameof(CreatePost), new { id = newPost.Id }, newPost);
+        }
+        catch (Exception ex)
+        {
+            // Log the error for debugging purposes
+            Console.WriteLine($"Error while creating a post: {ex.Message}");
+            return StatusCode(500, new { message = "An error occurred while creating the post." });
+        }
     }
+
 
 
     // GET: api/posts/filter?location={location}&sportName={sportName}&fromDate={fromDate}
