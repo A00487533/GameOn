@@ -2,11 +2,23 @@ import { useState, useEffect } from "react";
 import PostForm from "../components/PostForm";
 import PostTile from "../components/PostTile";
 import "../styles/Postgame.css";
+import Cookies from "js-cookie";
 
-// Function to fetch all posts from the API
-const fetchPosts = async () => {
+const fetchPosts = async (id) => {
     try {
-        const response = await fetch("/api/posts");
+        const response = await fetch(`https://localhost:7052/api/Posts/retrieve`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ UserID: id }),
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+        }
+
         if (!response.ok) {
             throw new Error("Failed to fetch posts");
         }
@@ -79,7 +91,10 @@ const PostgamePage = () => {
     // Fetch posts when the component mounts
     useEffect(() => {
         const loadPosts = async () => {
-            const fetchedPosts = await fetchPosts();
+            const id = Cookies.get("UserID") || 1 ;
+            
+            const fetchedPosts = await fetchPosts(id);
+            fetchedPosts
             setPosts(fetchedPosts);
         };
         loadPosts();

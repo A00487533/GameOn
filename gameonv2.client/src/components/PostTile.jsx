@@ -108,11 +108,11 @@ const PostTile = ({ post, onEdit, onDelete }) => {
             {/* Post content */}
             <h3>{post.sportName}</h3>
             <p>
-                <strong>Date:</strong> {post.date}
+                <strong>Date:</strong> {post.date1}
             </p>
             <p>
-                <strong>Time:</strong> {post.fromTime} {post.fromAMPM} - {post.toTime}{" "}
-                {post.toAMPM}
+                <strong>Time:</strong> {post.fromTime} - {post.tillTime}
+                
             </p>
             <p>
                 <strong>Location:</strong> {post.location}

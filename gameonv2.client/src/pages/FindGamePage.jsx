@@ -56,9 +56,14 @@ const FindGame = () => {
             <div className="filter-container">
                 <select value={sport} onChange={(e) => setSport(e.target.value)}>
                     <option value="">Select Sport</option>
+                    <option value="Pickleball">Pickleball</option>
                     <option value="Cricket">Cricket</option>
+                    <option value="Soccer">Soccer</option>
                     <option value="Basketball">Basketball</option>
                     <option value="Tennis">Tennis</option>
+                    <option value="Golf">Golf</option>
+                    <option value="Baseball">Baseball</option>
+                    <option value="Badminton">Badminton</option>
                 </select>
 
                 <input
@@ -73,6 +78,9 @@ const FindGame = () => {
                     <option value="Halifax">Halifax</option>
                     <option value="Dartmouth">Dartmouth</option>
                     <option value="Clayton Park">Clayton Park</option>
+                    <option value="Bayer's Lake">Bayer's Lake</option>
+                    <option value="Spryfield">Spryfield</option>
+                    <option value="Bedford">Bedford</option>
                 </select>
 
                 <button onClick={applyFilter}>Apply Filter</button>
