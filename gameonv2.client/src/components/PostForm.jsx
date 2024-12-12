@@ -16,19 +16,24 @@ const PostForm = ({ onCancel, initialData }) => {
     const [Location, setLocation] = useState(initialData?.Location || ""); // New field
 
     const formatTime = (timeString, dateString) => {
+        const [hours, minutes] = timeString.split(':');
         const dateTime = new Date(`${dateString}T${timeString}`);
-        return dateTime.toISOString(); // Automatically formats to ISO 8601
+
+        // Ensure the time is in the correct format for the backend
+        const formattedDate = dateTime.toISOString(); // This converts to 'YYYY-MM-DDTHH:mm:ss.sssZ'
+        const formattedTime = formattedDate.slice(0, 19); // Remove the milliseconds and timezone part
+
+        return formattedTime; // Returns time in 'YYYY-MM-DDTHH:mm:ss'
     };
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-
 
         // Validation for time and date
         const currentDate = new Date().toISOString().split("T")[0];
@@ -44,9 +49,9 @@ const PostForm = ({ onCancel, initialData }) => {
         const UserID = Cookies.get("UserID");
         console.log("User ID " + UserID + " is logged in!");
 
-        const formattedFromTime = formatTime(FromTime,Datee);
-        const formattedTillTime = formatTime(TillTime,Datee);
-        
+        const formattedFromTime = formatTime(FromTime, Datee);
+        const formattedTillTime = formatTime(TillTime, Datee);
+
         const postData = {
             Description,
             Location,
@@ -74,7 +79,6 @@ const PostForm = ({ onCancel, initialData }) => {
             const responseData = await response.json();
             console.log("Post saved successfully:", responseData);
 
-            // Optional: Notify parent component or redirect
             alert("Post saved successfully!");
         } catch (error) {
             console.error("Error saving post:", error);

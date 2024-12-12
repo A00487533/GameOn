@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace GameOnV2.Server.Models
 {
@@ -21,6 +22,8 @@ namespace GameOnV2.Server.Models
 
         // Foreign key reference to the User
         public int UserID { get; set; }
+
+        [JsonIgnore]
         public virtual User User { get; set; }
     }
 }

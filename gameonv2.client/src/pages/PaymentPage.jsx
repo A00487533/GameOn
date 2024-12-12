@@ -147,7 +147,7 @@ const Payment = () => {
                 throw new Error(`HTTP status ${response.status}`);
             }
             else {
-                navigate("/home"); // Redirecśt to the home page
+                navigate("/login"); // Redirecśt to the home page
             }
 
             const data = await response.json();

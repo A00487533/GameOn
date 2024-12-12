@@ -24,6 +24,24 @@ const PostTile = ({ post, onEdit, onDelete }) => {
         setShowDeleteConfirmation(false);
     };
 
+    // Function to subtract 4 hours from a given date string
+    const adjustTime = (timeString) => {
+        const date = new Date(timeString);
+        date.setHours(date.getHours() - 4); // Subtract 4 hours
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    };
+
+    // Function to format the date properly
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    };
+
     return (
         <div
             style={{
@@ -108,11 +126,10 @@ const PostTile = ({ post, onEdit, onDelete }) => {
             {/* Post content */}
             <h3>{post.sportName}</h3>
             <p>
-                <strong>Date:</strong> {post.date1}
+                <strong>Date:</strong> {formatDate(post.date1)}
             </p>
             <p>
-                <strong>Time:</strong> {post.fromTime} - {post.tillTime}
-                
+                <strong>Time:</strong> {adjustTime(post.fromTime)} - {adjustTime(post.tillTime)}
             </p>
             <p>
                 <strong>Location:</strong> {post.location}
